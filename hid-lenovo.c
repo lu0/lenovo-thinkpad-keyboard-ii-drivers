@@ -133,6 +133,7 @@ static __u8 *lenovo_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 {
 	switch (hdev->product) {
 	case USB_DEVICE_ID_LENOVO_TPPRODOCK:
+	case USB_DEVICE_ID_LENOVO_TPIIBTKBD:
 		/* the fixups that need to be done:
 		 *   - get a reasonable usage max for the vendor collection
 		 *     0x8801 from the report ID 4
@@ -144,19 +145,18 @@ static __u8 *lenovo_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 			rdesc[152] = 0x00;
 		}
 		break;
-	case USB_DEVICE_ID_LENOVO_TPIIBTKBD:
-		if (*rsize >= 263 &&
-		    memcmp(&rdesc[234], lenovo_tpIIbtkbd_need_fixup_collection,
-			  sizeof(lenovo_tpIIbtkbd_need_fixup_collection)) == 0) {
-			rdesc[244] = 0x00; /* usage minimum = 0x00 */
-			rdesc[247] = 0xff; /* usage maximum = 0xff */
-			rdesc[252] = 0xff; /* logical maximum = 0xff */
-			rdesc[254] = 0x08; /* report size = 0x08 */
-			rdesc[256] = 0x01; /* report count = 0x01 */
-			rdesc[258] = 0x00; /* input = 0x00 */
-			rdesc[260] = 0x01; /* report count (2) = 0x01 */
-		}
-		break;
+	// 	if (*rsize >= 263 &&
+	// 	    memcmp(&rdesc[234], lenovo_tpIIbtkbd_need_fixup_collection,
+	// 		  sizeof(lenovo_tpIIbtkbd_need_fixup_collection)) == 0) {
+	// 		rdesc[244] = 0x00; /* usage minimum = 0x00 */
+	// 		rdesc[247] = 0xff; /* usage maximum = 0xff */
+	// 		rdesc[252] = 0xff; /* logical maximum = 0xff */
+	// 		rdesc[254] = 0x08; /* report size = 0x08 */
+	// 		rdesc[256] = 0x01; /* report count = 0x01 */
+	// 		rdesc[258] = 0x00; /* input = 0x00 */
+	// 		rdesc[260] = 0x01; /* report count (2) = 0x01 */
+	// 	}
+	// 	break;
 	}
 	return rdesc;
 }
