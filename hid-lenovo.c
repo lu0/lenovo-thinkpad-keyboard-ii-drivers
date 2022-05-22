@@ -272,7 +272,7 @@ static int lenovo_input_mapping_tpIIkbd(struct hid_device *hdev,
 			map_key_clear(KEY_BRIGHTNESSUP);
 			return 1;
 		case 0x00c1: /* Fn-F8: Notification center */
-			map_key_clear(KEY_NOTIFICATION_CENTER);
+			// map_key_clear(KEY_NOTIFICATION_CENTER);
 			return 1;
 		case 0x00bc: /* Fn-F9: Control panel */
 			map_key_clear(KEY_CONFIG);
@@ -287,7 +287,7 @@ static int lenovo_input_mapping_tpIIkbd(struct hid_device *hdev,
 			map_key_clear(KEY_PROG1);
 			return 1;
 		case 0x00b9: /* Fn-PrtSc: Snipping tool */
-			map_key_clear(KEY_SELECTIVE_SCREENSHOT);
+			//map_key_clear(KEY_SELECTIVE_SCREENSHOT);
 			return 1;
 		case 0x00b5: /* Fn-Esc: Fn-lock toggle */
 			map_key_clear(KEY_FN_ESC);
@@ -409,10 +409,10 @@ static int lenovo_input_mapping_x1_tab_kbd(struct hid_device *hdev,
 			map_key_clear(KEY_KEYBOARD);
 			return 1;
 		case 2: /* Fn-F12: User function / Cortana */
-			map_key_clear(KEY_MACRO1);
+			//map_key_clear(KEY_MACRO1);
 			return 1;
 		case 3: /* Fn-PrtSc: Snipping tool */
-			map_key_clear(KEY_SELECTIVE_SCREENSHOT);
+			//map_key_clear(KEY_SELECTIVE_SCREENSHOT);
 			return 1;
 		case 8: /* Fn-Esc: Fn-lock toggle */
 			map_key_clear(KEY_FN_ESC);
