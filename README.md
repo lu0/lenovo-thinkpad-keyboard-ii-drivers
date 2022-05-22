@@ -46,5 +46,33 @@ these features frequently:
 My attempts are logged in shape of weird, maybe broken, commits. I won't even
 clear the history at this point. I want to track my progress.
 
-Will update this README once I solve most of the unbearable annoyances on kernel
-5.4
+~~Will update this README once I solve most of the unbearable annoyances on kernel
+5.4~~
+
+**Final steps to apply the (modified) patch in kernel 5.4:**
+
+Compile the modified patched module with the also-modified make script:
+```sh
+./make.sh
+```
+
+Backup the unpatched modules
+```sh
+cp /lib/modules/5.4.0-26-generic/kernel/drivers/hid/hid-lenovo.ko hid-lenovo.ko.unpatched
+```
+
+Make patched module the default one
+```sh
+sudo cp -f /lib/modules/5.4.0-26-generic/extra/hid-lenovo.ko /lib/modules/5.4.0-26-generic/kernel/drivers/hid/hid-lenovo.ko
+```
+
+Reload the module
+```
+sudo rmmod hid-lenovo && sudo modprobe hid-lenovo
+```
+
+Make the module load automatically:
+```sh
+echo -e "\nhid-lenovo" | sudo tee -a /etc/modules-load.d/modules.conf
+```
+
