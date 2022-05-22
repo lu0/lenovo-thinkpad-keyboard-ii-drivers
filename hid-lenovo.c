@@ -133,7 +133,6 @@ static __u8 *lenovo_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 {
 	switch (hdev->product) {
 	case USB_DEVICE_ID_LENOVO_TPPRODOCK:
-	case USB_DEVICE_ID_LENOVO_TPIIBTKBD:
 		/* the fixups that need to be done:
 		 *   - get a reasonable usage max for the vendor collection
 		 *     0x8801 from the report ID 4
@@ -145,6 +144,7 @@ static __u8 *lenovo_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 			rdesc[152] = 0x00;
 		}
 		break;
+	// case USB_DEVICE_ID_LENOVO_TPIIBTKBD:
 	// 	if (*rsize >= 263 &&
 	// 	    memcmp(&rdesc[234], lenovo_tpIIbtkbd_need_fixup_collection,
 	// 		  sizeof(lenovo_tpIIbtkbd_need_fixup_collection)) == 0) {
@@ -272,7 +272,7 @@ static int lenovo_input_mapping_tpIIkbd(struct hid_device *hdev,
 			map_key_clear(KEY_BRIGHTNESSUP);
 			return 1;
 		case 0x00c1: /* Fn-F8: Notification center */
-			// map_key_clear(KEY_NOTIFICATION_CENTER);
+			map_key_clear(KEY_WLAN);
 			return 1;
 		case 0x00bc: /* Fn-F9: Control panel */
 			map_key_clear(KEY_CONFIG);
@@ -287,7 +287,7 @@ static int lenovo_input_mapping_tpIIkbd(struct hid_device *hdev,
 			map_key_clear(KEY_PROG1);
 			return 1;
 		case 0x00b9: /* Fn-PrtSc: Snipping tool */
-			//map_key_clear(KEY_SELECTIVE_SCREENSHOT);
+			map_key_clear(KEY_FN_ESC);
 			return 1;
 		case 0x00b5: /* Fn-Esc: Fn-lock toggle */
 			map_key_clear(KEY_FN_ESC);
@@ -454,8 +454,10 @@ static int lenovo_input_mapping(struct hid_device *hdev,
 							usage, bit, max);
 	case USB_DEVICE_ID_LENOVO_TPIIUSBKBD:
 	case USB_DEVICE_ID_LENOVO_TPIIBTKBD:
-		return lenovo_input_mapping_tpIIkbd(hdev, hi, field,
+		return lenovo_input_mapping_cptkbd(hdev, hi, field,
 							usage, bit, max);
+		// return lenovo_input_mapping_tpIIkbd(hdev, hi, field,
+		// 					usage, bit, max);
 	case USB_DEVICE_ID_IBM_SCROLLPOINT_III:
 	case USB_DEVICE_ID_IBM_SCROLLPOINT_PRO:
 	case USB_DEVICE_ID_IBM_SCROLLPOINT_OPTICAL:
