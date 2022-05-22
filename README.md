@@ -5,7 +5,7 @@ This repo contains my attempts to modify, compile and test
 https://lore.kernel.org/linux-input/20211017083246.977096-1-iam@valdikss.org.ru/T/
 )
 for the kernel module `hid-lenovo` to solve weird behaviors of the **Thinkpad
-Bluetooth Keyboard II** in Linux kernel 5.4, compared to 5.18 (the kernel
+Bluetooth Keyboard II** in Linux kernel 5.4, compared to 5.10+ (the kernel
 version the patch is originally based upon), before migrating to 5.19 (not yet released).
 
 The first version of the external Thinkpad Keyboard (Wired USB) works really
